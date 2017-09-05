@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements FileShowAdapter.I
     private FileBeanDao fileBeanDao;
     private FilePopupWindow mFilePopupWindow;
     Handler handler = new Handler() {
-
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -152,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements FileShowAdapter.I
         public void run() {
             super.run();
             try {
-                mFileManager = new FileManager();
+                mFileManager = FileManager.getInstance();
                 mContractFiles.clear();
                 mContractFiles = mFileManager.getContractFile();
                 Message msg = new Message();

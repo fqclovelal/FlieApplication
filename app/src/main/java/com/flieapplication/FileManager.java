@@ -11,14 +11,25 @@ import java.util.List;
  */
 
 public class FileManager {
-    private File path;
-    private List<File> mAllFile;
+    private volatile File path;
+    private volatile List<File> mAllFile;
+    private static FileManager mFileManager;
 
-    public FileManager() {
+    private FileManager() {
         path = Environment.getExternalStorageDirectory();
         if (mAllFile == null) {
             mAllFile = new ArrayList<>();
         }
+    }
+    public static FileManager getInstance(){
+        if (mFileManager==null) {
+            synchronized (FileManager.class){
+                if (mFileManager==null) {
+                    mFileManager=new FileManager();
+                }
+            }
+        }
+        return mFileManager;
     }
 
     private void getFile(File file) {
@@ -37,6 +48,7 @@ public class FileManager {
     }
 
     private List<File> getAllFile() {
+        mAllFile.clear();
         getFile(path);
         return mAllFile;
     }
