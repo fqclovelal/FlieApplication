@@ -146,6 +146,17 @@ public class MainActivity extends AppCompatActivity implements FileShowAdapter.I
         new FileThread().start();
     }
 
+    @Override
+    public void searchData(String searchCondition) {
+        List<FileBean> list = fileBeanDao.queryBuilder().where(FileBeanDao.Properties.FileName.like("%" + searchCondition + "%")).list();
+        mContractFiles.clear();
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            mContractFiles.add(new File(list.get(i).getFileUrl()));
+        }
+        mFilePopupWindow.updateData(mContractFiles);
+    }
+
     public class FileThread extends Thread {
         @Override
         public void run() {

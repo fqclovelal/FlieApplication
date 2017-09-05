@@ -3,49 +3,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff">
+
+    <ImageView
+        android:id="@+id/close_window"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/close" />
+
     <RelativeLayout
         android:id="@+id/file_list_appbar"
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
         android:layout_height="50dp"
-        >
+        android:layout_below="@id/close_window"
+        android:layout_marginTop="10dp">
+
         <ImageView
             android:id="@+id/refresh_file_list"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:src="@mipmap/fresh"/>
+            android:src="@mipmap/fresh" />
+
         <EditText
+            android:id="@+id/search"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:hint="搜索文件"/>
-        <ImageView
-            android:id="@+id/close_window"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/close"/>
+            android:hint="搜索文件" />
+
+        <Button
+            android:id="@+id/search_sure"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@id/search"
+            android:gravity="center"
+            android:text="确定" />
 
     </RelativeLayout>
 
 
     <TextView
         android:id="@+id/select_file"
-        android:layout_below="@id/file_list_appbar"
         android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:layout_below="@id/file_list_appbar"
         android:layout_marginLeft="5dp"
-        android:text="请选择文件"
         android:gravity="center_vertical"
-        />
+        android:text="请选择文件" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/file_list"
-        android:layout_below="@id/select_file"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-       ></android.support.v7.widget.RecyclerView>
+        android:layout_below="@id/select_file"></android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>
